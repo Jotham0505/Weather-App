@@ -9,10 +9,10 @@ import '/utils/get_weather_icons.dart';
 
 class CityWeatherTile extends ConsumerWidget {
   const CityWeatherTile({
-    super.key,
+    Key? key,
     required this.city,
     required this.index,
-  });
+  }) : super(key: key);
 
   final FamousCity city;
   final int index;
@@ -20,17 +20,24 @@ class CityWeatherTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentWeather = ref.watch(cityForecastProvider(city.name));
-
+  
     return currentWeather.when(
       data: (weather) {
         return Padding(
-          padding: const EdgeInsets.all(
-            0.0,
-          ),
-          child: Material(
-            color: index == 0 ? AppColors.lightBlue : AppColors.accentBlue,
-            elevation: index == 0 ? 12 : 0,
-            borderRadius: BorderRadius.circular(10),
+          padding: const EdgeInsets.all(0.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: index == 0 ? AppColors.lightBlue : AppColors.accentBlue,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: index == 0 ? [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 10,
+                  spreadRadius: 2,
+                  offset: Offset(0, 5),
+                ),
+              ] : [],
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -49,7 +56,7 @@ class CityWeatherTile extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${weather.main.temp.round()}°C',
+                              '${weather.main.temp}°',
                               style: TextStyles.h2,
                             ),
                             const SizedBox(height: 5),

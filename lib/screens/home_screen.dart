@@ -32,17 +32,24 @@ class _HomeScreenState extends State<HomeScreen> {
       child: GradientContainer(
         children: [
           Align(
-            alignment: Alignment.center,
-            child: Text(
-              'Pick Location',
-              style: TextStyles.h1,
+            alignment: Alignment.topLeft,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Weathernaut',
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white
+                  ),
+                ),
+                
+                CircleAvatar(
+                  radius: 30,
+                  foregroundImage: AssetImage('assets/logo/main.png'),
+                )
+              ],
             ),
-          ),
-          SizedBox(height: 20),
-          Text(
-            'Enter the City',
-            style: TextStyles.subtitleText,
-            textAlign: TextAlign.center,
           ),
           SizedBox(height: 30),
           Padding(

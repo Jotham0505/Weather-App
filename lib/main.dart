@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weatherapp/screens/Home_screen.dart';
+import 'package:weatherapp/screens/main_screen.dart';
 
 
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const MainScreen(),
     );
   }
 }
