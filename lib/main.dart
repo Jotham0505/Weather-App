@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/screens/home_screen.dart';
-import 'package:weatherapp/screens/weather_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weatherapp/screens/Home_screen.dart';
+
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true
-      ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen()
+      title: 'Weather App Demo',
+      theme: ThemeData(
+        useMaterial3: true,
+        primarySwatch: Colors.blue,
+      ),
+      home: const HomeScreen(),
     );
   }
 }
-
-

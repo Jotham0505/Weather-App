@@ -1,6 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:weatherapp/screens/weather_screen.dart';
+import 'package:weatherapp/constants/text_styles.dart';
+import 'package:weatherapp/views/famous_cities_weather.dart';
+import 'package:weatherapp/views/gradient_container.dart';
+import 'package:weatherapp/widgets/round_text_field.dart'; // import the RoundTextField widget
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,40 +12,48 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+  late final TextEditingController _searchController;
 
-  final _screens = [
-    Center(child: Text('home'),),
-    WeatherScreen(),
-    Center(child: Text('settings'),),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
 
-
-  final _destinations = [
-    NavigationDestination(icon: Icon(Icons.home_outlined), label: '',selectedIcon: Icon(Icons.home),),
-    NavigationDestination(icon: Icon(Icons.wb_sunny_outlined), label: '',selectedIcon: Icon(Icons.sunny),),
-    NavigationDestination(icon: Icon(Icons.settings_outlined), label: '',selectedIcon: Icon(Icons.settings),),
-  ];
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text('HomeScreen'),
-      ),
-      body: _screens[_currentIndex],
-      bottomNavigationBar: NavigationBar(
-        destinations: _destinations,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        selectedIndex: _currentIndex,
-        indicatorColor: Colors.transparent,
-        onDestinationSelected: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+    return Material(
+      child: GradientContainer(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Pick Location',
+              style: TextStyles.h1,
+            ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            'Enter the City',
+            style: TextStyles.subtitleText,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: RoundTextField(controller: _searchController),
+          ),
+          SizedBox(height: 30),
+          FamousCitiesWeather(),
+        ],
       ),
     );
+    
   }
 }
