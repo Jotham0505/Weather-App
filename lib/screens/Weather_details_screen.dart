@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weatherapp/screens/weather_screen/weather_screen.dart';
+import 'package:weatherapp/providers/refresh_notifier.dart';
 import 'package:weatherapp/views/hourly_forecast_view.dart';
 import 'package:weatherapp/views/weekly_forecast_view.dart';
 
@@ -9,8 +9,7 @@ import '/extensions/datetime.dart';
 import '/extensions/strings.dart';
 import '/providers/get_city_forecast_provider.dart';
 import '/screens/weather_screen/weather_info.dart';
-import '/views/gradient_container.dart';
- // Import your HourlyForecastView widget here
+import '/views/gradient_container.dart';// Import the refresh provider
 
 class WeatherDetailScreen extends ConsumerWidget {
   const WeatherDetailScreen({
@@ -23,6 +22,8 @@ class WeatherDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final weatherData = ref.watch(cityForecastProvider(cityName));
+    final isRefreshing = ref.watch(refreshProvider);
+
     return Scaffold(
       body: weatherData.when(
         data: (weather) {
@@ -73,20 +74,28 @@ class WeatherDetailScreen extends ConsumerWidget {
                   // Include HourlyForecastView here
                   WeatherInfo(weather: weather),
 
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 25),
+                  TextButton(
+                    onPressed: () async {
+                      ref.read(refreshProvider.notifier).startRefreshing();
+                      await ref.refresh(cityForecastProvider(cityName).future);
+                      ref.read(refreshProvider.notifier).stopRefreshing();
+                    },
+                    child: Text('Refresh'),
+                  ),
                 ],
               ),
 
               const SizedBox(height: 40),
 
-              Text('Three hour Forecast',style: TextStyles.h3,),
+              Text('Today', style: TextStyles.h3),
 
               // Weather info in a row
               HourlyForecastView(),
 
-              SizedBox(height: 50,),
+              const SizedBox(height: 50),
 
-              Text('Weekly Forecast',style: TextStyles.h3,),
+              Text('Next 7 days', style: TextStyles.h3),
 
               WeeklyForecastView(),
 

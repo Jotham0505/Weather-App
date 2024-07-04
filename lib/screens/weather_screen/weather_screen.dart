@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weatherapp/views/weekly_forecast_view.dart';
 
 import '/constants/app_colors.dart';
 import '/constants/text_styles.dart';
@@ -30,7 +31,12 @@ class WeatherScreen extends ConsumerWidget {
                 // Country name text
                 Text(
                   weather.name,
-                  style: TextStyles.h1,
+                  style: TextStyle(
+                    decoration: TextDecoration.none,
+                     fontSize: 24,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+                  ),
                 ),
 
                 const SizedBox(height: 20),
@@ -38,7 +44,12 @@ class WeatherScreen extends ConsumerWidget {
                 // Today's date
                 Text(
                   DateTime.now().dateTime,
-                  style: TextStyles.subtitleText,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.grey,
+                    decoration: TextDecoration.none
+                  )
                 ),
 
                 const SizedBox(height: 30),
@@ -57,7 +68,12 @@ class WeatherScreen extends ConsumerWidget {
                 // Weather description
                 Text(
                   weather.weather[0].description.capitalize,
-                  style: TextStyles.h2,
+                  style: TextStyle(
+                    decoration: TextDecoration.none,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.white,
+                  )
                 ),
               ],
             ),
@@ -78,14 +94,7 @@ class WeatherScreen extends ConsumerWidget {
                   style: TextStyle(
                     fontSize: 20,
                     color: AppColors.white,
-                  ),
-                ),
-                InkWell(
-                  child: Text(
-                    'View full report',
-                    style: TextStyle(
-                      color: AppColors.lightBlue,
-                    ),
+                    decoration: TextDecoration.none
                   ),
                 ),
               ],
@@ -95,6 +104,9 @@ class WeatherScreen extends ConsumerWidget {
 
             // hourly forcast
             const HourlyForecastView(),
+
+            SizedBox(height: 30,),
+
           ],
         );
       },

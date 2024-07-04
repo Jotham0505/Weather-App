@@ -1,18 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/constants/app_colors.dart';
+import 'package:weatherapp/screens/home_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // main screen with get started 
     return Scaffold(
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF231557), Color(0xFF44107A), Color(0xFFFF1361), Color(0xFFFFF800)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+            colors: [
+              AppColors.black,
+              AppColors.secondaryBlack,
+              AppColors.secondaryBlack.withOpacity(.99),
+              AppColors.secondaryBlack.withOpacity(.98),
+              AppColors.secondaryBlack.withOpacity(.97),
+              AppColors.secondaryBlack.withOpacity(.96),
+              AppColors.secondaryBlack.withOpacity(.95),
+              AppColors.secondaryBlack.withOpacity(.94),
+              AppColors.secondaryBlack.withOpacity(.93),
+              AppColors.secondaryBlack.withOpacity(.92),
+              AppColors.secondaryBlack.withOpacity(.91),
+              AppColors.secondaryBlack.withOpacity(.90),
+              AppColors.darkBlue,
+              AppColors.accentBlue,
+              AppColors.lightBlue,
+            ],
           ),
         ),
         child: Column(
@@ -21,7 +39,7 @@ class MainScreen extends StatelessWidget {
             Image.asset('assets/icons/02d.png'),
             SizedBox(height: 20),
             Text(
-              'WeatherNaut',
+              'Weather Forecast',
               style: TextStyle(
                 fontSize: 36,
                 color: Colors.white,
@@ -30,7 +48,7 @@ class MainScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen())),
               style: ElevatedButton.styleFrom(
                 primary: Color(0xFFFFC107), // Button color
                 shape: RoundedRectangleBorder(
@@ -40,7 +58,7 @@ class MainScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
                 child: Text(
-                  'Get Start',
+                  'Get Started',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/widgets/weather_info_tile.dart';
 
 import '/constants/text_styles.dart';
 import '/extensions/double.dart';
@@ -21,7 +22,7 @@ class WeatherInfo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          WeatherInfoTile(
+          WeatherInfoTile( // WEather info such as temperature, wind , humidity.
             title: 'Temp',
             value: '${weather.main.temp}°',
           ),
@@ -39,32 +40,4 @@ class WeatherInfo extends StatelessWidget {
   }
 }
 
-class WeatherInfoTile extends StatelessWidget {
-  const WeatherInfoTile({
-    super.key,
-    required this.title,
-    required this.value,
-  }) : super();
 
-  final String title;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        // Title
-        Text(
-          title,
-          style: TextStyles.subtitleText,
-        ),
-        const SizedBox(height: 10),
-        Text(
-          value,
-          style: TextStyles.h3,
-        )
-      ],
-    );
-  }
-}

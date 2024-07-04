@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:weatherapp/constants/app_colors.dart';
-import 'package:weatherapp/screens/Wether_details_screen.dart'; // Update import to correct file name
+import 'package:weatherapp/screens/Weather_details_screen.dart'; // Update import to correct file name
 import 'cities.dart';
 
 class RoundTextField extends StatefulWidget {
