@@ -15,7 +15,7 @@ class WeatherScreen extends ConsumerWidget {
   const WeatherScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) { // current weather screen
     final weatherData = ref.watch(currentWeatherProvider);
 
     return weatherData.when(

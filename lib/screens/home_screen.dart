@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  'Weather Forecast',
+                  'Search for a City',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: RoundTextField(controller: _searchController),
           ),
           SizedBox(height: 30),
-          FamousCitiesWeather(),
+          Padding(padding: EdgeInsets.zero,child: FamousCitiesWeather()),
           SizedBox(height: 30),
           SizedBox(
             width: 50,
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => WeatherScreen())),
-              child: Text('Current Weather Status'),
+              child: Text('Current Weather Status',style: TextStyle(color: AppColors.grey),),
             ),
           ), // famous city weather tiles
         ],

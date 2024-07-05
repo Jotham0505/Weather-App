@@ -6,7 +6,7 @@ class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
-  Widget build(BuildContext context) { // main screen with get started 
+  Widget build(BuildContext context) { // main screen with get started button
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -50,7 +50,7 @@ class MainScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen())),
               style: ElevatedButton.styleFrom(
-                primary: Color(0xFFFFC107), // Button color
+                primary: Color.fromARGB(255, 239, 194, 59), // Button color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),

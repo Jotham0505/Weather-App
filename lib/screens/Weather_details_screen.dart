@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weatherapp/constants/app_colors.dart';
 import 'package:weatherapp/providers/refresh_notifier.dart';
 import 'package:weatherapp/views/hourly_forecast_view.dart';
 import 'package:weatherapp/views/weekly_forecast_view.dart';
@@ -75,13 +76,16 @@ class WeatherDetailScreen extends ConsumerWidget {
                   WeatherInfo(weather: weather),
 
                   const SizedBox(height: 25),
-                  TextButton(
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.accentBlue
+                    ),
                     onPressed: () async {
                       ref.read(refreshProvider.notifier).startRefreshing();
                       await ref.refresh(cityForecastProvider(cityName).future);
                       ref.read(refreshProvider.notifier).stopRefreshing();
                     },
-                    child: Text('Refresh'),
+                    child: Text('Refresh',style: TextStyle(color: AppColors.grey),),
                   ),
                 ],
               ),
